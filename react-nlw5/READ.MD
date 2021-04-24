@@ -1,15 +1,20 @@
 Creating project with react
-
 `npx create-react-app podcaster`
 
 
 Starting project
-
 `yarn start`
 
 
 Creating project with Next.js
 `npx create-next-app podcaster-next`
+
+Starting project
+`yarn dev`
+
+Web
+http://localhost:3000/
+
 
 
 Como os conteúdos são gerados posterior às requisições rest, e os indexadores normalmente não esperam pelo retorno para indexar, e consideram que a página é "vazia", para evitar isso existe:
