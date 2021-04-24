@@ -18,7 +18,11 @@ Add typescript
 Converter os arquivos .js para .tsx
 .tsx = typescript + jsx (xml no javascript)
 
+Sass
+https://sass-lang.com/
 
+Integração sass
+yarn add sass
 
 Web
 http://localhost:3000/
