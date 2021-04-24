@@ -12,6 +12,14 @@ Creating project with Next.js
 Starting project
 `yarn dev`
 
+Add typescript
+`yarn add typescript @types/react @types/node -D`
+
+Converter os arquivos .js para .tsx
+.tsx = typescript + jsx (xml no javascript)
+
+
+
 Web
 http://localhost:3000/
 
