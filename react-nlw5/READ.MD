@@ -24,6 +24,10 @@ https://sass-lang.com/
 Integração sass
 yarn add sass
 
+Obter font 
+https://fonts.google.com/
+
+
 Web
 http://localhost:3000/
 
