@@ -1,4 +1,4 @@
-Creating project
+Creating project with react
 
 `npx create-react-app podcaster`
 
@@ -6,6 +6,10 @@ Creating project
 Starting project
 
 `yarn start`
+
+
+Creating project with Next.js
+`npx create-next-app podcaster-next`
 
 
 Como os conteúdos são gerados posterior às requisições rest, e os indexadores normalmente não esperam pelo retorno para indexar, e consideram que a página é "vazia", para evitar isso existe:
