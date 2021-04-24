@@ -1,13 +1,21 @@
 import '../styles/global.scss';
+import styles from '../styles/app.module.scss';
+
 import { Header } from "../components/Header";
+import { Player } from "../components/Player";
+
 
 // Coisas que estão sempre em toda aplicação devem estar no app
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
-      <Header />
-      <Component {...pageProps} />
+    <div className={styles.wrapper}>
+      <main>
+        <Header />
+        <Component {...pageProps} />
+      </main>
+      <Player/>
+      
     </div>
   );
 }
