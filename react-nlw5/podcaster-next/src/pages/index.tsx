@@ -3,10 +3,21 @@
 // SSG - a página estática é exibida por x tempo, independente do número de pessoas que acessar nesse meio período,
 //       vão acessar o mesmo conteúdo, fica mais performático. Não precisa de resposta real-time
 
-import { useEffect } from "react"
+import { useEffect } from "react";
+import { GetStaticProps } from 'next';
 
+type Episode = {
+  id: string;
+  title: string;
+  members: string;
+    // ...
+}
 
-export default function Home(props) {
+type HomeProps = {
+  episodes: Episode[]; //Array<Episode> 
+}
+
+export default function Home(props: HomeProps) {
 
   // Modelo SPA
   // useEffect(() => {
@@ -42,8 +53,8 @@ export default function Home(props) {
 // SSG só funciona em produção, para isso é necessário fazer uma build e rodar em prod
 // yarn build
 // yarn start
-export async function getStaticProps() {
-  const response = await fetch('http://localhost:3333/episodes')
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch('http://localhost:3333/episodes?_limit=12&_sort=published_at&_order=desc');
   const data = await response.json();
 
   return {
