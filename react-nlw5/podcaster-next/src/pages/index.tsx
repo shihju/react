@@ -6,12 +6,14 @@
 import { useEffect } from "react";
 import { GetStaticProps } from 'next';
 import { api } from "../services/api";
+import Image from 'next/image';
 
 import { format, parseISO } from 'date-fns';
 import ptBr from 'date-fns/locale/pt-BR';
 
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 
+import styles from './styles.module.scss';
 
 type Episode = {
   id: string;
@@ -26,10 +28,12 @@ type Episode = {
 }
 
 type HomeProps = {
-  episodes: Episode[]; //Array<Episode> 
+  latestEpisodes: Episode[]; //Array<Episode> 
+  allEpisodes: Episode[];
+
 }
 
-export default function Home(props: HomeProps) {
+export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
 
   // Modelo SPA
   // useEffect(() => {
@@ -39,13 +43,48 @@ export default function Home(props: HomeProps) {
   // }, [])
 
   // No SSR ocorre na camada do servidor Next js log o print ocorre no servidor
-  console.log(props.episodes);
+  // console.log(props.episodes);
 
   // dont format data here, cause it is going to be done everytime
   return (
-    <div>
-      <h1>Index</h1>
-      <p>{JSON.stringify(props.episodes)}</p>
+    <div className={styles.homepage}>
+      <section className={styles.latestEpisodes}>
+        <h2>Últimos episódios</h2>
+
+        <ul>
+          {latestEpisodes.map(episode => {
+            return (
+              <li key={episode.id}>
+                <Image 
+                  width={192}
+                  height={192}
+                  src={episode.thumbnail}
+                  alt={episode.title} 
+                  objectFit="cover"
+                /> 
+
+                <div className={styles.episodeDetails}>
+                  <a href="">{episode.title}</a>
+                  <p>{episode.members}</p>
+                  <span>{episode.publishedAt}</span>
+                  <span>{episode.durationAsString}</span>
+                </div>
+
+                <button type="button">
+                  <img src="./play-green.svg" alt="Tocar áudio"/>
+                </button>
+                
+              </li>   
+            )
+          })}
+        </ul>
+
+      </section>
+
+
+      <section className={styles.allEpisodes}>
+
+      </section>
     </div>
   )
 }
@@ -90,10 +129,14 @@ export const getStaticProps: GetStaticProps = async () => {
 
   })
 
+  const latestEpisodes = episodes.slice(0, 2);
+  const allEpisodes = episodes.slice(2, episodes.length);
+
 
   return {
     props: {
-      episodes: episodes,
+      latestEpisodes,
+      allEpisodes
     },
     revalidate: 60 * 60 * 8, // a cada 8 horas, será feita uma nova requisição ao api
   }
