@@ -1,10 +1,11 @@
-// SPA - se desabilitar javascript do navegador para de buscar os dados
+// SPA - se desabilitar javascript do navegador para de buscar os dados, muda só os dados do que precisa, não carrega totalmente a tela do zero
 // SSR - se desabilitar javascript do navegador continua a buscar os dados, já que já foi montado o html pelo next.js server
 // SSG - a página estática é exibida por x tempo, independente do número de pessoas que acessar nesse meio período,
 //       vão acessar o mesmo conteúdo, fica mais performático. Não precisa de resposta real-time
 
 import { useEffect } from "react";
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { api } from "../services/api";
 import Image from 'next/image';
 
@@ -64,7 +65,9 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
                 /> 
 
                 <div className={styles.episodeDetails}>
-                  <a href={`/episodes/${episode.id}`}>{episode.title}</a>
+                  <Link href={`/episodes/${episode.id}`}>
+                    <a>{episode.title}</a>
+                  </Link>
                   <p>{episode.members}</p>
                   <span>{episode.publishedAt}</span>
                   <span>{episode.durationAsString}</span>
@@ -86,12 +89,14 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
           <h2>Todos episódios</h2>
           <table cellSpacing={0}>
             <thead>
-              <th></th>
-              <th>Podcast</th>
-              <th>Integrantes</th>
-              <th>Data</th>
-              <th>Duração</th>
-              <th></th>
+              <tr>
+                <th></th>
+                <th>Podcast</th>
+                <th>Integrantes</th>
+                <th>Data</th>
+                <th>Duração</th>
+                <th></th>
+              </tr>
             </thead>
 
             <tbody>
