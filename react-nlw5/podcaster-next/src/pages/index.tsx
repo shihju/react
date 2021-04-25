@@ -16,9 +16,13 @@ import { convertDurationToTimeString } from '../utils/convertDurationToTimeStrin
 type Episode = {
   id: string;
   title: string;
+  thumbnail: string;
+  description: string;
   members: string;
-  published_at: string;
-    // ...
+  duration: number;
+  durationAsString: string;
+  url: string;
+  publishedAt: string;
 }
 
 type HomeProps = {
@@ -37,6 +41,7 @@ export default function Home(props: HomeProps) {
   // No SSR ocorre na camada do servidor Next js log o print ocorre no servidor
   console.log(props.episodes);
 
+  // dont format data here, cause it is going to be done everytime
   return (
     <div>
       <h1>Index</h1>
