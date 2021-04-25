@@ -9,11 +9,19 @@ Starting project
 Creating project with Next.js
 `npx create-next-app podcaster-next`
 
-Starting project
+Starting project in development mode
 `yarn dev`
+
+Build project
+`yarn build`
+
+Start project as in production mode
+`yarn start`
+
 
 Add typescript
 `yarn add typescript @types/react @types/node -D`
+
 
 Converter os arquivos .js para .tsx
 .tsx = typescript + jsx (xml no javascript)
